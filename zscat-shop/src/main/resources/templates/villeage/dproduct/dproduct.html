@@ -1,0 +1,124 @@
+<!-- ueditor所需引入 -->
+@layout("/layout/ueditor.html"){}
+
+<div class="tabbable">
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a data-toggle="tab" href="#home"> <i
+				class="green ace-icon fa fa-list-alt bigger-120"></i> 列表
+		</a></li>
+		
+		
+		<li class=""><a data-toggle="tab" href="#profile">
+		<i class="green ace-icon fa fa-plus bigger-120"></i> 添加
+		</a></li>
+		
+		
+	</ul>
+
+	<div class="tab-content">
+		<div id="home" class="tab-pane active clearfix">
+			<form action="${ctxPath}/dproduct/list" method="post" id="search-form" target="list-page" class="clearfix">
+				
+				<div class="pull-left width-30">
+					<label>描述：</label>
+					<input type="text" class="width-80" name="description"/>
+				</div>
+				<div class="pull-left"><span class="btn btn-info btn-sm " id="search-btn">查 询</span></div>
+			</form>
+			<hr/>
+			<div id="list-page"></div>
+			<script type="text/javascript">
+				$("#search-form").getPageList({'submitBtnId':'search-btn'})
+			</script>
+		</div>
+
+		<div id="profile" class="tab-pane">
+			<form action="${ctxPath!}/dproduct/save" method="post" id="product-save-form"  enctype="multipart/form-data">
+		<div class="center padding-10">
+			<label>项目名：</label>
+			<input type="text" class="width-50" name="title" datatype="*"  nullmsg="请输入title！"/>
+		</div>
+		
+		<div class="center padding-10">
+					<label>图片：</label>
+					<div class="width-50 inline text-left">
+					<input type="file"  id="imgs" name="imgs" datatype="*"  nullmsg="请输入姓名！"/>
+					</div>
+		</div>
+		<div class="center padding-10">
+			<label>类型：</label>
+			<div class="width-50 inline text-left">
+			@var typeList = dgoods.getProductType();
+			  	<#select name="typename" class="width-50">
+						@for(item in typeList){
+							<option value="${item.id!},${item.name!}" ${decode(item.id,product.type!,"selected","")}>
+							${item.name!}
+							</option>
+						@}
+			   </#select>
+			   </div>
+		</div>
+		<div class="center padding-10">
+			<label>菜单类别：</label>
+			<div class="width-50 inline text-left">
+			<#treeselect url="productClass/tree"  modelNameValue="${productClass.name!}" 
+			modelIdValue="${productClass.id!0}" selectIds="${productClass.id!}"
+			curId="${productClass.id!}" modelId="type" nameId="productClass" id="type_id"
+							isCheck="请选择分类"/>
+			</div>
+			
+		</div> 
+		<div class="center padding-10">
+			<label>价格：</label>
+			<input type="text" class="width-50" name="prices" datatype="*"  nullmsg="请输入prices！"/>
+		</div>
+		<div class="center padding-10">
+			<label>标签：</label>
+			<input type="text" class=" width-50" name="tag" datatype="*"  nullmsg="请输入tag！"/>
+		</div>
+		<div class="center padding-10">
+					<textarea  style="width:93%;height:290px" name="remark" id="remark"></textarea>
+		</div>
+				
+				<input type="hidden" name="remark" id="remark" />
+				<input type="hidden" name="contentNoTag" id="contentNoTag" />
+				<input type="hidden" name="summary" id="summary" />
+				<div class="margin-t15">
+					<span class="btn btn-info btn-block bigger-120" onclick="backValue()" id="product-save-btn">保 存</span>
+				</div>
+			</form>
+		</div>	
+</div>
+<script type="text/javascript">
+//$(function(){
+//	$('.tags').tagsInput();
+//});
+	//上传
+	$('#imgs').ace_file_input({
+		no_file:'请选择图片 ...',
+		btn_choose:'选择',
+		btn_change:'更改',
+		droppable:false,
+		onchange:null,
+		thumbnail:false //| true | large
+		//whitelist:'gif|png|jpg|jpeg'
+		//blacklist:'exe|php'
+		//onchange:''
+		//
+	});
+		function backValue(){
+			var content=UE.getEditor('remark').getContent();
+	    	var contentNoTag=UE.getEditor('remark').getContentTxt();
+	    	var summary=UE.getEditor('remark').getContentTxt().substr(0,155);
+	    
+	    	$("#content").val(content);
+	    	$("#contentNoTag").val(contentNoTag);
+	    	$("#summary").val(summary);
+	    	$("#product-save-form").submit();
+		}
+		function reurl(){ 
+			UE.getEditor('remark');
+		} 
+		setTimeout('reurl()',500); 	
+	</script>
+</div>

@@ -1,0 +1,76 @@
+<div class="layer">
+	<form name="FormPost" id="dviname-save" class="FormGrid"  method="post"
+		action="${ctxPath}/dviname/save">
+		
+		<input type="hidden" value="${dviname.id!}" name="id"/>
+		<table class="EditTable" width="100%">
+			<tbody>
+				<tr style="display: none;">
+					<td class="ui-state-error" id="FormError"></td>
+				</tr>
+								<tr class="FormData">
+			<td class="CaptionTD">姓名</td>
+			<td class="DataTD width-100"><input type="text" name="name" datatype="*"
+			nullmsg="请输入姓名！" value="${dviname.name!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">年龄</td>
+			<td class="DataTD width-100"><input type="text" name="age" datatype="*"
+			nullmsg="请输入年龄！" value="${dviname.age!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">身高</td>
+			<td class="DataTD width-100"><input type="text" name="heigth" datatype="*"
+			nullmsg="请输入身高！" value="${dviname.heigth!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">体重</td>
+			<td class="DataTD width-100"><input type="text" name="weight" datatype="*"
+			nullmsg="请输入体重！" value="${dviname.weight!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">内容</td>
+			<td class="DataTD width-100"><input type="text" name="content" datatype="*"
+			nullmsg="请输入内容！" value="${dviname.content!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">1美女榜，2帅哥3 名人榜</td>
+			<td class="DataTD width-100"><input type="text" name="type" datatype="*"
+			nullmsg="请输入1美女榜，2帅哥3 名人榜！" value="${dviname.type!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">排序</td>
+			<td class="DataTD width-100"><input type="text" name="orderno" datatype="*"
+			nullmsg="请输入排序！" value="${dviname.orderno!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">1单身2有对象3已婚</td>
+			<td class="DataTD width-100"><input type="text" name="stat" datatype="*"
+			nullmsg="请输入1单身2有对象3已婚！" value="${dviname.stat!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">村庄</td>
+			<td class="DataTD width-100"><input type="text" name="villageid" datatype="*"
+			nullmsg="请输入村庄！" value="${dviname.villageid!}"></td>
+		</tr>
+
+				<!-- <tr class="FormData">
+					<td class="CaptionTD">描述</td>
+					<td class="DataTD">
+						<textarea name="description" class="autosize-transition form-control "
+						style="resize: none;">${dviname.description!}</textarea>	
+					</td>
+				</tr> -->
+			</tbody>
+		</table>
+	</form>
+</div>
+<#save formId="dviname-save" />
+
+<script type="text/javascript">
+
+//描述框自动扩张高度
+$('textarea[class*=autosize]').autosize({append: "\n"});
+//日期框
+$('.date-picker').datepicker();
+</script>

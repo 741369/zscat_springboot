@@ -1,0 +1,105 @@
+<#include "/top.html">
+<div class="layui-layout layui-layout-content">
+<#include "/sysMenu.html">		
+<div class="layui-body">
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="site-h1" style="background-color:#FFFFFF;">
+			用户列表<#if userList??>（${userList?size}）</#if>
+			<span style="float:right;">
+				<button class="layui-btn layui-btn-small green" href="/admin/user/add.html" data-toggle="ajax" data-width="750" data-title="创建新用户">
+					创建新用户
+				</button>
+			</span>
+		</h1>
+		<div class="row" style="padding:5px;">
+			<div class="col-lg-12">
+				<table class="layui-table" lay-skin="line">
+				  <colgroup>
+						<col width="20%">
+						<col width="15%">
+						<col width="25%">
+						<col width="15%">
+						<col width="10%">
+						<col width="15%">
+						<col width="1%">
+						<col>
+				  </colgroup>
+				  <thead>
+					<tr>
+					  <th>用户</th>
+					  <th>姓名</th>
+					  <th>电子邮件</th>
+					  <th>手机</th>
+					  <th>坐席</th>
+					  <th>注册时间</th>
+					  <th style="white-space:nowrap;" nowrap="nowrap">操作</th>
+					</tr> 
+				  </thead>
+				  <tbody>
+					<#if userList?? && userList.list??>
+					<#list userList.list as user>
+					<tr>
+					  <td>
+							<a href="">
+								<i class="layui-icon headimg">&#xe612;</i>
+								<div style="margin-left:50px;margin-top:0px;">
+									${user.username!''}<#if user.delFlag == 1><i style="color:red;">（已删除）</i></#if>
+								</div>
+							</a>
+							
+					  </td>
+					  <td>${user.name!''}</td>
+					  <td>${user.email!''}</td>
+					  <td>${user.mobile!''}</td>
+					  <td>
+					  	<#if user.company_id>
+					  		<i class="layui-icon" style="color:#19a55d;">&#xe618;</i>
+					  	</#if>
+					  </td>
+					  <td>${user.create_date!''}</td>
+					  <td style="white-space:nowrap;" nowrap="nowrap">
+					  		<a href="/admin/user/edit.html?id=${user.id!''}" data-toggle="ajax" data-width="750" data-title="编辑用户信息">
+					  			<i class="layui-icon">&#xe642;</i>
+					  			编辑
+					  		</a>
+					  		<#if !(user.usertype?? && user.usertype == "0") && user.delFlag != 1 >
+					  		<a href="/admin/user/delete.html?id=${user.id!''}" style="margin-left:10px;" data-toggle="tip" data-title="请确认是否删除记录？">
+					  			<i class="layui-icon" style="color:red;">&#x1006;</i>
+					  			删除
+					  		</a>
+					  		</#if>
+					  </td>
+					</tr>
+					</#list>
+					</#if>
+				  </tbody>
+				</table>
+			</div> 	   
+		</div>
+		<div class="row" style="padding:5px;">
+			<div class="col-lg-12" id="page" style="text-align:center;"></div>
+		</div>
+	</div>	
+</div>
+</div>
+</div>
+
+<script>
+	layui.use(['laypage', 'layer'], function(){
+		  var laypage = layui.laypage
+		  ,layer = layui.layer;
+		  
+		  laypage({
+				cont: 'page'
+				,pages: <#if userList??>${userList.pages}<#else>0</#if> //总页数
+				,curr:<#if userList??>${userList.pageNum}<#else>0</#if>
+				,groups: 5 //连续显示分页数
+				,jump:function(data , first){
+					if(!first){
+						location.href = "/admin/user/index.html?p="+data.curr ;
+					}
+				}
+		   });
+		});
+</script>

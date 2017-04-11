@@ -1,0 +1,91 @@
+<div class="layer">
+	<form name="FormPost" id="darticle-save" class="FormGrid"  method="post"
+		action="${ctxPath}/darticle/save">
+		
+		<input type="hidden" value="${darticle.id!}" name="id"/>
+		<table class="EditTable" width="100%">
+			<tbody>
+				<tr style="display: none;">
+					<td class="ui-state-error" id="FormError"></td>
+				</tr>
+								<tr class="FormData">
+			<td class="CaptionTD">标题</td>
+			<td class="DataTD width-100"><input type="text" name="title" datatype="*"
+			nullmsg="请输入标题！" value="${darticle.title!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">摘要</td>
+			<td class="DataTD width-100"><input type="text" name="summary" datatype="*"
+			nullmsg="请输入摘要！" value="${darticle.summary!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">发布时间</td>
+			<td class="DataTD width-100"><input type="text" data-date-format="yyyy-mm-dd" readonly="readonly" class="date-picker" name="releasedate" datatype="*"
+			nullmsg="请输入发布时间！" value="${darticle.releasedate!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">clickhit</td>
+			<td class="DataTD width-100"><input type="text" name="clickhit" datatype="*"
+			nullmsg="请输入clickhit！" value="${darticle.clickhit!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">replyhit</td>
+			<td class="DataTD width-100"><input type="text" name="replyhit" datatype="*"
+			nullmsg="请输入replyhit！" value="${darticle.replyhit!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">content</td>
+			<td class="DataTD width-100"><input type="text" name="content" datatype="*"
+			nullmsg="请输入content！" value="${darticle.content!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">keyword</td>
+			<td class="DataTD width-100"><input type="text" name="keyword" datatype="*"
+			nullmsg="请输入keyword！" value="${darticle.keyword!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">1存在 2 删除</td>
+			<td class="DataTD width-100"><input type="text" name="state" datatype="*"
+			nullmsg="请输入1存在 2 删除！" value="${darticle.state!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">userid</td>
+			<td class="DataTD width-100"><input type="text" name="userid" datatype="*"
+			nullmsg="请输入userid！" value="${darticle.userid!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">img</td>
+			<td class="DataTD width-100"><input type="text" name="img" datatype="*"
+			nullmsg="请输入img！" value="${darticle.img!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">villageid</td>
+			<td class="DataTD width-100"><input type="text" name="villageid" datatype="*"
+			nullmsg="请输入villageid！" value="${darticle.villageid!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">username</td>
+			<td class="DataTD width-100"><input type="text" name="username" datatype="*"
+			nullmsg="请输入username！" value="${darticle.username!}"></td>
+		</tr>
+
+				<!-- <tr class="FormData">
+					<td class="CaptionTD">描述</td>
+					<td class="DataTD">
+						<textarea name="description" class="autosize-transition form-control "
+						style="resize: none;">${darticle.description!}</textarea>	
+					</td>
+				</tr> -->
+			</tbody>
+		</table>
+	</form>
+</div>
+<#save formId="darticle-save" />
+
+<script type="text/javascript">
+
+//描述框自动扩张高度
+$('textarea[class*=autosize]').autosize({append: "\n"});
+//日期框
+$('.date-picker').datepicker();
+</script>

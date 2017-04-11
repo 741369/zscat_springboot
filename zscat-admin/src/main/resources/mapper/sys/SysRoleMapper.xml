@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zscat.sys.mapper.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.zscat.sys.model.SysRole" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="office_id" property="officeId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="data_scope" property="dataScope" jdbcType="CHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="sysRoleColumns">
+		id,create_by,create_date,data_scope,del_flag,name,office_id,remarks,update_by,update_date
+	</sql>
+	<sql id="sysRoleAliasColumns">
+		sr.id,sr.create_by,sr.create_date,sr.data_scope,sr.del_flag,sr.name,sr.office_id,
+		sr.remarks,sr.update_by,sr.update_date
+	</sql>
+	
+	<!-- 添加角色所在机构 -->
+	<insert id="insertRoleOffice">
+		insert into sys_role_office (role_Id,office_id) values 
+		<foreach collection="officeIds" index="index" item="officeId" separator=",">
+			(#{id},#{officeId,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+	
+	<!-- 添加角色绑定的用户 -->
+	<insert id="insertUserRoleByRoleId">
+		insert into sys_user_role (role_Id,user_id) values 
+		<foreach collection="userIds" index="index" item="userId" separator=",">
+			(#{id},#{userId,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+	
+	<!-- 添加用户选择的角色 -->
+	<insert id="insertUserRoleByUserId">
+		insert into sys_user_role (user_id,role_Id) values 
+		<foreach collection="roleIds" index="index" item="roleId" separator=",">
+			(#{id},#{roleId,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+	
+	<!-- 添加角色拥有的权限 -->
+	<insert id="insertRoleResource">
+		insert into sys_role_resource (role_id,resource_id) values
+		<foreach collection="resourceIds" index="index" item="resourceId" separator=",">
+			(#{id},#{resourceId,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+	
+	<!-- 删除角色所在的机构 -->
+	<delete id="deleteRoleOfficeByRoleId">
+		delete from sys_role_office where role_id = #{roleId}
+	</delete>
+	
+	<!-- 删除角色所绑定的用户 -->
+	<delete id="deleteUserRoleByRoleId">
+		delete from sys_user_role where role_id = #{roleId}
+	</delete>
+	
+	<!--删除用户所属角色  -->
+	<delete id="deleteUserRoleByUserId">
+		delete from sys_user_role where user_id = #{userId}
+	</delete>
+	
+	<!-- 删除角色拥有的权限 -->
+	<delete id="deleteRoleResourceByRoleId">
+		delete from sys_role_resource where role_id = #{roleId}
+	</delete>
+	
+	<!-- 根据角色id查询拥有的机构id集合 -->
+	<select id="findOfficeIdsByRoleId" resultType="java.lang.Long">
+		select office_id from sys_role_office where role_id = #{roleId}
+	</select>
+	
+	<!-- 根据角色id查找用户 -->
+	<select id="findUserByRoleId" resultType="com.zscat.sys.model.SysUser">
+		select su.id,su.name from sys_user su left join sys_user_role sur 
+		on su.id = sur.user_id 
+		where sur.role_id = #{roleId} 
+	</select>
+	
+	<!-- 根据用户id查找角色 -->
+	<select id="findUserRoleListByUserId" resultType="com.zscat.sys.model.SysRole">
+		SELECT sr.id,sr.name,sr.office_id,sr.data_scope FROM sys_role sr 
+		LEFT JOIN sys_user_role sur ON sr.id=sur.role_id
+		WHERE sur.user_id=#{userId}
+	</select>
+	
+	<!-- 根据角色id查询拥有的资源id集合 -->
+	<select id="findResourceIdsByRoleId" resultType="java.lang.Long">
+		select resource_id from sys_role_resource where role_id = #{roleId}
+	</select>
+	
+	<!-- 根据角色id查找绑定用户ids -->
+	<select id="findUserIdsByRoleId" resultType="java.lang.Long">
+		select user_id from sys_user_role where role_id = #{role_id}
+	</select>
+	
+	<!-- 根据角色id查询绑定的资源 -->
+	<select id="findResourceByRoleId" resultType="com.zscat.sys.model.SysResource">
+		select sr.id,sr.name from sys_resource sr left join sys_role_resource rr 
+		on sr.id = rr.resource_id
+		where role_id = #{roleId}
+	</select>
+	
+	<!-- 分页查询角色 -->
+	<select id="findPageInfo" resultType="com.zscat.sys.model.SysRole">
+		SELECT DISTINCT <include refid="sysRoleAliasColumns"/> FROM sys_role sr 
+		LEFT JOIN sys_user_role sur ON sr.id=sur.role_id
+		LEFT JOIN sys_office so ON so.id=sr.office_id
+		<where>
+			<if test="dataScope!=null and dataScope!=''">
+				sr.data_scope = #{dataScope}
+			</if>
+			<if test="name!=null and name!=''">
+				and sr.name like concat('%',#{name},'%')
+			</if>
+			<if test="officeId!=null and officeId !=0">
+				and sr.office_id = #{officeId}
+			</if>
+			<if test="@Ognl@isNotBlank(remarks)">
+				and sr.remarks = #{remarks}
+			</if>
+			<if test="@Ognl@isNotBlank(userDataScope)">
+				and ${userDataScope}
+			</if>
+		</where>
+		ORDER BY update_date desc
+	</select>
+</mapper>

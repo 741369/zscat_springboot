@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<name>${goods.name}</name>
+<meta name="keywords" content="KEYWORDS..." />
+<meta name="description" content="DESCRIPTION..." />
+<meta name="author" content="DeathGhost" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="${ctxPath}/static/wap1/images/icon/favicon.ico"
+	type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" sizes="57x57"
+	href="${ctxPath}/static/wap1/images/icon/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120"
+	href="${ctxPath}/static/wap1/images/icon/apple-touch-icon-120x120-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196"
+	href="${ctxPath}/static/wap1/images/icon/apple-touch-icon-196x196-precomposed.png">
+<meta name="viewport"
+	content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/wap1/css/style.css" />
+<script src="${ctxPath}/static/wap1/js/jquery.js"></script>
+<script src="${ctxPath}/static/wap1/js/swiper.min.js"></script>
+<script>
+$(document).ready(function(){
+	var mySwiper = new Swiper('#slide',{
+		  autoplay:5000,
+		  visibilityFullFit : true,
+		  loop:true,
+		  pagination : '.pagination',
+	  });
+	//product list:Tab
+	$(".tab_proList dd").eq(0).show().siblings(".tab_proList dd").hide();
+	$(".tab_proList dt a").eq(0).addClass("currStyle");
+	$(".tab_proList dt a").click(function(){
+	var liindex = $(".tab_proList dt a").index(this);
+	$(this).addClass("currStyle").siblings().removeClass("currStyle");
+	$(".tab_proList dd").eq(liindex).fadeIn(150).siblings(".tab_proList dd").hide();
+	});
+   //飞入动画，具体根据实际情况调整
+   $(".addToCart").click(function(){
+	        $(".hoverCart a").html(parseInt($(".hoverCart a").html())+1);/*测试+1*/
+            var shopOffset = $(".hoverCart").offset();
+            var cloneDiv = $(this).parent().siblings(".goodsPic").clone();
+            var proOffset = $(this).parent().siblings(".goodsPic").offset();
+            cloneDiv.css({ "position": "absolute", "top": proOffset.top, "left": proOffset.left });
+            $(this).parent().siblings(".goodsPic").parent().append(cloneDiv);
+            cloneDiv.animate({
+				width:0,
+				height:0,
+                left: shopOffset.left,
+                top: shopOffset.top,
+				opacity:1
+            },"slow");
+	   });
+});
+</script>
+</head>
+<body>
+	<!--header-->
+	<header>
+		<a href="#" class="location">北京市</a>
+		<h1 class="logoIcon" style="font-size: .85rem;">&#35;</h1>
+		<a href="#" class="rt_searchIcon">&#37;</a>
+	</header>
+	<div style="height: 1rem;"></div>
+	<!--slide-->
+	<div id="slide">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<a href="#"> <img src="${ctxPath}/static/wap1/upload/slide001.jpg" />
+				</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="#"> <img src="${ctxPath}/static/wap1/upload/slide002.jpg" />
+				</a>
+			</div>
+		</div>
+		<div class="pagination"></div>
+	</div>
+	<!--categoryList-->
+	<ul class="categoryLiIcon">
+	
+	 @for(ty in ownTypes.list!){
+		<li><a href="${ctxPath!}/villeage/goodsList/${ty.id!}"> <img src="${ctxPath}/static/wap1/upload/menu_bg_0${tyLP.index}.png" />
+				<em>${ty.name!}</em>
+		</a></li>
+	@}
+	
+	</ul>
+	
+	<!--Tab:productList-->
+	<dl class="tab_proList">
+		<dt>
+			<a>所有</a> <a>美女榜</a> <a>帅哥榜</a><a>名人榜</a>
+		</dt>
+		<dd>
+			<ul>
+				      @for(hit in ownGoods!){
+				<li><a href="${ctxPath!}/villeage/goodsDetail/${hit.id!}" class="goodsPic"> <img
+						src="${ctxPath!}/static/upload/viname/${hit.img!}" />
+				</a>
+					<div class="goodsInfor">
+						<h2>
+							<a href="${ctxPath!}/villeage/goodsDetail/${hit.id!}">${hit.name!}</a>
+						</h2>
+						<p>
+							<span>年龄: ${hit.age!}岁</span>   
+							<span>身高:${hit.heigth!}cm</span>
+							  <strong>体重: ${hit.weight!}kg</strong>
+						</p>
+						<p>
+							<del class="price">${hit.clickhit!}</del>
+						</p>
+						<a href="${ctxPath!}/villeage/goodsDetail/${hit.id!}" class="addToCart1">${hitLP.index }</a>
+					</div></li>
+					@}
+			</ul>
+		</dd>
+		<dd>
+			<ul>
+				  @for(hit1 in nvGoods!){
+				<li><a href="${ctxPath!}/villeage/goodsDetail/${hit1.id!}" class="goodsPic"> <img
+						src="${ctxPath!}/static/upload/viname/${hit1.img!}" />
+				</a>
+					<div class="goodsInfor">
+						<h2>
+							<a href="${ctxPath!}/villeage/goodsDetail/${hit1.id!}">${hit1.name!}</a>
+						</h2>
+						<p>
+							<span>年龄: ${hit1.age!}岁</span>   
+							<span>身高:${hit1.heigth!}cm</span>
+							  <strong>体重: ${hit1.weight!}kg</strong>
+						</p>
+						<p>
+							<del class="price">${hit1.clickhit!}</del>
+						</p>
+						<a href="${ctxPath!}/villeage/goodsDetail/${hit1.id!}" class="addToCart1">${hit1LP.index }</a>
+					</div></li>
+					@}
+			</ul>	
+		</dd>
+		<dd>
+			<ul>
+				  @for(hit2 in nanGoods!){
+				<li><a href="${ctxPath!}/villeage/goodsDetail/${hit2.id!}" class="goodsPic"> <img
+						src="${ctxPath!}/static/upload/viname/${hit2.img!}" />
+				</a>
+					<div class="goodsInfor">
+						<h2>
+							<a href="${ctxPath!}/villeage/goodsDetail/${hit2.id!}">${hit2.name!}</a>
+						</h2>
+						<p>
+							<span>年龄: ${hit2.age!}岁</span>   
+							<span>身高:${hit2.heigth!}cm</span>
+							  <strong>体重: ${hit2.weight!}kg</strong>
+						</p>
+						<p>
+							<del class="price">${hit2.clickhit!}</del>
+						</p>
+						<a href="${ctxPath!}/villeage/goodsDetail/${hit2.id!}" class="addToCart1">${hit2LP.index }</a>
+					</div></li>
+					@}
+			</ul>	
+		</dd>
+		<dd>
+			<ul>
+				  @for(hit3 in mingGoods!){
+				<li><a href="${ctxPath!}/villeage/goodsDetail/${hit3.id!}" class="goodsPic"> <img
+						src="${ctxPath!}/static/upload/viname/${hit3.img!}" />
+				</a>
+					<div class="goodsInfor">
+						<h2>
+							<a href="${ctxPath!}/villeage/goodsDetail/${hit3.id!}">${hit3.name!}</a>
+						</h2>
+						<p>
+							<span>年龄: ${hit3.age!}岁</span>   
+							<span>身高:${hit3.heigth!}cm</span>
+							  <strong>体重: ${hit3.weight!}kg</strong>
+						</p>
+						<p>
+							<del class="price">${hit3.clickhit!}</del>
+						</p>
+						<a href="${ctxPath!}/villeage/goodsDetail/${hit3.id!}" class="addToCart1">${hit3LP.index }</a>
+					</div></li>
+					@}
+			</ul>	
+		</dd>
+	</dl>
+	<!--floatCart-->
+	<div class="hoverCart">
+		<a href="${ctxPath}/villeage/person/cartList">0</a>
+	</div>
+	<div style="height: 1.2rem;"></div>
+	@layout("/villeage/wap/layout/footNav.html"){}
+	
+	<script>
+  document.oncontextmenu=new Function("event.returnValue=false;");
+  document.onselectstart=new Function("event.returnValue=false;"); 
+</script>
+
+</body>
+</html>

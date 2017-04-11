@@ -1,0 +1,93 @@
+<!-- ueditor所需引入 -->
+@layout("/layout/ueditor.html"){}
+<script type="text/javascript">
+//上传
+$('#imgs1').ace_file_input({
+	no_file:'请选择图片 ...',
+	btn_choose:'选择',
+	btn_change:'更改',
+	droppable:false,
+	onchange:null,
+	thumbnail:false //| true | large
+	//whitelist:'gif|png|jpg|jpeg'
+	//blacklist:'exe|php'
+	//onchange:''
+	//
+});
+	function backValue(){
+		var content=UE.getEditor('remark').getContent();
+    	var contentNoTag=UE.getEditor('remark').getContentTxt();
+    	var summary=UE.getEditor('remark').getContentTxt().substr(0,155);
+    
+    	$("#content").val(content);
+    	$("#contentNoTag").val(contentNoTag);
+    	$("#summary").val(summary);
+    	$("#product-save").submit();
+	}
+	function reurl(){ 
+		UE.getEditor('remark1');
+	} 
+	setTimeout('reurl()',500); 
+</script>
+<div class="layer">
+	<form name="FormPost" id="product-save" class="FormGrid"  method="post"
+		action="${ctxPath}/dproduct/save" enctype="multipart/form-data">
+		
+		<input type="hidden" value="${product.id!}" name="id"/>
+		<table class="EditTable" width="100%">
+			<tbody>
+				<tr style="display: none;">
+					<td class="ui-state-error" id="FormError"></td>
+				</tr>
+			<tr class="FormData">
+			<td class="CaptionTD">标题</td>
+			<td class="DataTD width-100"><input type="text" name="title" datatype="*"
+			nullmsg="请输入title！" value="${product.title!}"></td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">标签</td>
+			<td class="DataTD width-100"><input type="text" name="tag" datatype="*"
+			nullmsg="请输入tag！" value="${product.tag!}"></td>
+		</tr>
+	
+		
+		<tr class="FormData">
+			<td class="CaptionTD">类型</td>
+			<td class="DataTD width-100">
+			@var typeList = dgoods.getProductType();
+			  	<select name="type">
+						@for(item in typeList){
+							<option value="${item.id!}" ${decode(item.id,product.type!,"selected","")}>
+							${item.name!}
+							</option>
+						@}
+			   </select>
+			   </td>
+		</tr>
+		<tr class="FormData">
+			<td class="CaptionTD">图片</td>
+			<td class="DataTD width-100">	
+			<input type="file"  id="imgs1" name="imgs" datatype="*"  nullmsg="请输入姓名！"/>
+			</td>
+		</tr>
+		<tr class="FormData">
+					<td class="CaptionTD">内容</td>
+					<td>
+					<textarea  style="width:93%;height:290px" name="remark1" id="remark1">${product.remark!}</textarea>
+					</td>
+				
+				<input type="hidden" name="contentNoTag" id="contentNoTag" />
+				<input type="hidden" name="summary" id="summary" />
+		</tr>
+		<tr class="FormData">
+					<td colspan="2" class="CaptionTD"><span class="btn btn-info btn-block bigger-120" onclick="backValue()" id="product-save-btn">保 存</span>
+					</td>
+		
+			</tbody>
+		</table>
+	</form>
+</div>
+
+
+
+	

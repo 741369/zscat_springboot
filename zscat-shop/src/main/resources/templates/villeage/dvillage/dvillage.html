@@ -1,0 +1,87 @@
+<div class="tabbable">
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a data-toggle="tab" href="#home"> <i
+				class="green ace-icon fa fa-list-alt bigger-120"></i> 列表
+		</a></li>
+		@if(auth.hasPermission("villeage:dvillage:add")){
+		<li class=""><a data-toggle="tab" href="#profile">
+		<i class="green ace-icon fa fa-plus bigger-120"></i> 添加
+		</a></li>
+		@}
+	</ul>
+
+	<div class="tab-content">
+		<div id="home" class="tab-pane active clearfix">
+			<form action="${ctxPath}/dvillage/list" method="post" id="search-form" target="list-page" class="clearfix">
+				
+				<div class="pull-left width-30">
+					<label>描述：</label>
+					<input type="text" class="width-80" name="description"/>
+				</div>
+				<div class="pull-left"><span class="btn btn-info btn-sm " id="search-btn">查 询</span></div>
+			</form>
+			<hr/>
+			<div id="list-page"></div>
+			<script type="text/javascript">
+				$("#search-form").getPageList({'submitBtnId':'search-btn'})
+			</script>
+		</div>
+
+		<div id="profile" class="tab-pane">
+			<form action="${ctxPath!}/dvillage/save" method="post" id="product-save-form"  enctype="multipart/form-data">
+		<div class="center padding-10">
+			<label>村名：</label>
+			<input type="text" class="width-50" name="name" datatype="*"  nullmsg="请输入村名！"/>
+		</div>
+		<div class="center padding-10">
+					<label>图片：</label>
+					<div class="width-50 inline text-left">
+					<input type="file"  id="imgs" name="imgs" datatype="*"  nullmsg="请输入姓名！"/>
+					</div>
+		</div>
+		<div class="center padding-10">
+			<label>地址：</label>
+			<input type="text" class="width-50" name="address" datatype="*"  nullmsg="请输入地址！"/>
+		</div>
+		<div class="center padding-10">
+			<label>电话：</label>
+			<input type="text" class="width-50" name="phone" datatype="*"  nullmsg="请输入电话！"/>
+		</div>
+		
+		<div class="center padding-10">
+			<label>邮编：</label>
+			<input type="text" class="width-50" name="postcpde" datatype="*"  nullmsg="请输入邮编！"/>
+		</div>
+		<div class="margin-t15">
+					<span class="btn btn-info btn-block bigger-120" onclick="backValue()" id="product-save-btn">保 存</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+//$(function(){
+//	$('.tags').tagsInput();
+//});
+	//上传
+	$('#imgs').ace_file_input({
+		no_file:'请选择图片 ...',
+		btn_choose:'选择',
+		btn_change:'更改',
+		droppable:false,
+		onchange:null,
+		thumbnail:false //| true | large
+		//whitelist:'gif|png|jpg|jpeg'
+		//blacklist:'exe|php'
+		//onchange:''
+		//
+	});
+		function backValue(){
+			
+	    	$("#product-save-form").submit();
+		}
+		function reurl(){ 
+			UE.getEditor('remark');
+		} 
+		setTimeout('reurl()',500); 	
+	</script>

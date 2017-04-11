@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="viewport"
+	content="width=device-width, maximum-scale=1.0, initial-scale=1.0,initial-scale=1.0,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>UCKeFu-全渠道客服系统</title>
+<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico?t=${.now?long}"/>
+<link rel="stylesheet" href="/static/css/layui.css">
+<link rel="stylesheet" href="/static/css/login.css">
+<script src="/static/layui.js"></script>
+
+<script language="javascript">
+	if((window.frameElement && window.frameElement.id || '') != ""){
+		top.location.href = "/login.html" ;
+	}
+	
+</script>
+</head>
+
+<body>
+	<div class="login-box">
+		<div class="login-logo">
+			<a> <img src="/static/images/logo.png" style="height:60px;">
+			</a>
+		</div>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<p class="login-box-msg">账号密码登陆</p>
+			<form id="loginForm" action="/login"
+				class="loginFormWrapper" method="post">
+				<#if referer??>
+				<input type="hidden" name="referer" value="${referer!''}"/>
+				</#if>
+				<div class="form-group has-feedback">
+					<span class="layui-icon form-control-feedback">&#xe612;</span> 
+					<input name="username" id="username" autofocus required lay-verify="required"  
+						class="form-control required" value="admin" placeholder="用户名/邮件/手机号" data-error="用户名不能为空">
+				</div>
+				<div class="form-group has-feedback" style="margin-bottom:10px;">
+					<span class="kfont form-control-feedback">&#xe618;</span>
+					<input type="password" name="password" required lay-verify="required"  
+						class="form-control required" value="admin" placeholder="密码">
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="checkbox">
+							<label> <input type="checkbox" name="sla" value="1"
+								checked="checked">七天内自动登录
+							</label>
+						</div>
+					</div>
+					<!--
+						<div class="col-md-6" style="text-align:right;">
+							<div class="checkbox">
+								<a href="/user/forget.html">忘记密码？</a>	
+							</div>
+						</div>
+						-->
+				</div>
+
+				<div class="row" style="margin-bottom:20px;">
+					<div class="col-md-6"></div>
+				</div>
+				<div class="row">
+
+					<!-- /.col -->
+					<div class="col-xs-12">
+						<button class="btn btn-block btn-primary btn-lg" id="login"
+							type="submit">立即登陆</button>
+					</div>
+					<!-- /.col -->
+				</div>
+			</form>
+			<div class="social-auth-links text-center">
+				<div class="networks"></div>
+			</div>
+		</div>
+		<!-- /.login-box-body -->
+	</div>
+	<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/static/jquery/jquery.min.js'>"+"<"+"/script>");
+		</script>
+		<!-- <![endif]-->
+		
+		<script type="text/javascript" src="/static/validate/Validform_v5.3.2_min.js"></script>
+		<script type="text/javascript">
+			
+
+			jQuery(function($) {
+				$("#loginForm").Validform({
+					btnSubmit:"#login",
+					ajaxPost:true,
+					beforeSubmit:function(curform){
+						$("#login").attr("disabled","disabled").find("span").text("登录中…");
+					},
+					callback:function(data){
+						if(undefined != data.error){
+							$("#login").removeAttr("disabled").find("span").text("登 录");
+							var obj = $("#loginForm input[data-error='"+data.error+"']");
+							layer.tips(data.error,obj, {
+								guide:0,
+								time: 4,
+								style : ['background-color:#F26C4F; color:#fff','#F26C4F' ],
+							});
+						}else{
+							window.location.href = "/index";
+						}
+					},
+					tiptype : function(msg, o, cssctl) {
+						if (!o.obj.is("form")) {
+							if (o.type != 2) {
+								layer.tips(msg, o.obj, {
+									guide:3,
+									time: 4,
+									style : ['background-color:#F26C4F; color:#fff','#F26C4F' ],
+								});
+							}
+						}
+					},
+					tipSweep : true
+				});
+				
+				$("#loginForm").keydown(function(e){
+					 var e = e || event,
+					 keycode = e.which || e.keyCode;
+					 if (keycode==13) {
+					  $("#login").trigger("click");
+					 }
+				});
+				
+			});
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+.breadcrumb {
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 37px;
+    height: 33px;
+    overflow: hidden;
+}
+
+.Hui-aside .menu_dropdown dd ul {padding: 3px 0px 3px 15px;}
+.Hui-aside .menu_dropdown dd li{line-height:normal;}
+.Hui-aside .menu_dropdown dd li a{line-height:normal;padding-left:2px; font-weight:normal;height: 21px;}
+.ztree * {font-size: 14px;}

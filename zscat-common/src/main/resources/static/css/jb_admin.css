@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.login_header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 99
+}
+
+.login_header {
+	top: 0;
+	height: 60px;
+	background: #426374 url(../images/logo.png) no-repeat 0 center
+}
+
+.tabBar {
+	border-bottom-width: 1px;
+}
+
+.tabBar span {
+	border-right: 1px solid #FFF;
+}
+
+.loginBox .input-text {
+	width: 100%;
+}
+
+.img-thrum {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.Hui-aside {
+	width: 239px;
+}
+
+.big-page .Hui-aside {
+	left: -240px;
+}
+
+.dislpayArrow {
+	left: 240px;
+}
+
+.Hui-article-box {
+	left: 239px;
+}
+
+.Hui-article-box, .Hui-article {
+	z-index: auto;
+}

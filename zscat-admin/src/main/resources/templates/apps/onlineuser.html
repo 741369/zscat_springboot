@@ -1,0 +1,70 @@
+<div class="layui-side layui-bg-black layui-left-black">
+	<div class="layui-side-scroll">
+		<#include "/apps/include/left.html">
+	</div>
+</div>
+<div class="layui-body">
+	<div class="layui-side-scroll">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="site-h1" style="border-top:1px solid #e6e6e6;height:50px;">
+					<span class="ukefu-bt">
+						<i class="layui-icon ukewo-btn" style="font-size:28px;">&#xe612;</i>
+						<div class="ukefu-bt-text">
+							<div class="ukefu-bt-text-title" style="">
+								当前在线用户列表<#if page??>（${page?size}）</#if>
+							</div>
+							<div class="ukefu-bt-text-content" style="margin-top: 0px;line-height: 20px;">
+								在线的访客详细信息
+							</div>
+						</div>
+					</span>
+					
+				</h1>
+				<table class="layui-table" lay-skin="line">
+					<thead>
+						<tr class="design-sortable-tr">
+							<th>用户名</th>
+							<th>终端</th>
+							<th>操作系统</th>
+							<th>浏览器</th>
+							<th>访问时间</th>
+							<th>停留时间</th>
+							<th>地域</th>
+							<th>邀请次数</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<#if page??  && page?size gt 0>
+						<#list page as onlineuser>
+						<tr class="tdHasContorllor design-dropable-td">
+							<td class=" first_td_head">
+								<a href="/service/online/index.html?userid=${onlineuser.userid!''}">${onlineuser.username!''}</a>
+							</td>
+				
+							<td class=" ">${onlineuser.username!''}</td>
+							<td class=" "><#if onlineuser.create_date??>${onlineuser.create_date?string('yyyy-MM-dd HH:mm:ss')}</#if></td>
+						
+							<td class=" ">${onlineuser.password!''}</td>
+							<td class=" ">${onlineuser.name!''}</td>
+							<td class=" ">${onlineuser.email!''}</td>
+							
+						</tr>
+						</#list>
+						<#else>
+							<tr>
+								<td colspan="20" style="height:400px;">
+									<div class="ukefu-empty">
+										<i class="layui-icon">&#xe63a;</i>
+										<div style="">还没有在线访客记录</div>
+									</div>
+								</td>
+							</tr>
+						</#if>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.zscat.base.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${druid.driver-class}"
+                        connectionURL="${druid.url}"
+                        userId="${druid.username}"
+                        password="${druid.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.zscat.cms.model" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper.cms" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.zscat.cms.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+ <table tableName="cms_article" domainObjectName="CmsArticle" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+  <table tableName="cms_category" domainObjectName="CmsCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+   <table tableName="cms_comment" domainObjectName="CmsComment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+    <table tableName="cms_link" domainObjectName="CmsLink" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+     <table tableName="cms_site" domainObjectName="CmsSite" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+        <!-- <table tableName="%"> -->
+         <!-- <table tableName="sys_area" domainObjectName="SysArea" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+         <generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+          <table tableName="sys_dict" domainObjectName="SysDict" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+           <table tableName="sys_log" domainObjectName="SysLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+            <table tableName="sys_office" domainObjectName="SysOffice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+             <table tableName="sys_resource" domainObjectName="SysResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+              <table tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+               <table tableName="sys_role_office" domainObjectName="SysRoleOffice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+                <table tableName="sys_role_resource" domainObjectName="SysRoleResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+                 <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+                  <table tableName="sys_user_role" domainObjectName="SysUserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+           -->
+            <!--mysql 配置-->
+           <!--  <generatedKey column="id" sqlStatement="Mysql" identity="true"/> -->
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+       
+    </context>
+</generatorConfiguration>

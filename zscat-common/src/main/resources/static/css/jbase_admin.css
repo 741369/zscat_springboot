@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+.login_header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 99
+}
+
+.login_header {
+	top: 0;
+	height: 60px;
+	background: #426374 url(../images/logo.png) no-repeat 0 center
+}
+
+.tabBar {
+	border-bottom-width: 1px;
+}
+
+.tabBar span {
+	border-right: 1px solid #FFF;
+}
+
+.loginBox .input-text {
+	width: 100%;
+}
+
+.img-thrum {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.Hui-aside {
+	width: 239px;
+}
+
+.big-page .Hui-aside {
+	left: -240px;
+}
+
+.dislpayArrow {
+	left: 240px;
+}
+
+.Hui-article-box {
+	left: 239px;
+}
+
+.Hui-article-box, .Hui-article {
+	z-index: auto;
+}
+
+
+
+/*3.1.3 对齐
+	Name:			style_text-align
+	Example:		class="text-l|text-r|text-c|va-t|va-m|va-b"
+	Explain:		.text-水平对齐 （.text-l左对齐|.text-r右对齐|.text-c居中对齐）
+					.va-上下对齐 （.va-t 居上对齐|.va-m 居中对齐|.va-b 居下对齐）
+*/
+.text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}
+table thead tr.text-c th{text-align:center}
+.va *{vertical-align:sub!important;*vertical-align:middle!important;_vertical-align:middle!important}
+.va-t{vertical-align:top!important}.va-m{vertical-align:middle!important}.va-b{vertical-align:bottom!important}
+/*3.1.8 外边距
+	Name:			style_margin
+	Example:		class="mt-5|mt-10..."
+	Explain:		.mt表示上边距|.mb表示下边距|.ml表示左边距|.mr表示右边距
+*/
+.mt-5{margin-top:5px}.mt-10{margin-top:10px}.mt-15{margin-top:15px}.mt-20{margin-top:20px}.mt-25{margin-top:25px}.mt-30{margin-top:30px}.mt-35{margin-top:35px}.mt-40{margin-top:40px}.mt-50{margin-top:50px}
+.mb-5{margin-bottom:5px}.mb-10{margin-bottom:10px}.mb-15{margin-bottom:15px}.mb-20{margin-bottom:20px}.mb-30{margin-bottom:30px}.mb-40{margin-bottom:40px}.mb-50{margin-bottom:50px}
+.ml-5{margin-left:5px}.ml-10{margin-left:10px}.ml-15{margin-left:15px}.ml-20{margin-left:20px}.ml-30{margin-left:30px}.ml-40{margin-left:40px}.ml-50{margin-left:50px}
+.mr-5{margin-right:5px}.mr-10{margin-right:10px}.mr-15{margin-right:15px}.mr-20{margin-right:20px}.mr-30{margin-right:30px}.mr-40{margin-right:40px}.mr-50{margin-right:50px}
+/*3.1.9 内填充
+	Name:			style_padding
+	Example:		class="pt-5|pt-10|……"
+	Explain:		.pt表示上填充|.pb表示下填充|.pl表示左填充|.pr表示右填充
+*/
+.pt-5{padding-top:5px}.pt-10{padding-top:10px}.pt-20{padding-top:20px}
+.pb-5{padding-bottom:5px}.pb-10{padding-bottom:10px}.pb-20{padding-bottom:20px}.pb-30{padding-bottom:30px}
+.pl-5{padding-left:5px}.pl-10{padding-left:10px}.pl-20{padding-left:20px}.pl-30{padding-left:30px}
+.pr-5{padding-right:5px}.pr-10{padding-right:10px}.pr-20{padding-right:20px}
+.pd-5{padding:5px}.pd-10{padding:10px}.pd-15{padding:15px}.pd-20{padding:20px}.pd-30{padding:30px}.pd-40{padding:40px}
+/*3.6 图片*/
+/*3.6.1 图片效果
+<img src="" class="img-responsive|radius|round|thumbnail" />
+img-responsive 响应式    .radius 圆角图片    .round 圆形图片   .thumbnail 缩略图
+*/
+.img-responsive{display:inline-block;max-width:100%;height:auto}
+.thumbnail{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;max-width:100%;height:auto;padding:4px;line-height:1.42857143;background-color:#fff;border:1px solid #ddd;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;transition:all .2s ease-in-out}
+@media (max-width: 767px) {
+	.img-responsive{width:100%}
+}
+.duang-opacity img{-webkit-transition:opacity .1s linear;-moz-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}
+.duang-opacity a:hover img,a:hover .opacity img{opacity:0.85;filter: alpha(opacity=85)}
+/*3.6.2 图集效果
+	Name:			modal_album
+	Example:
+<div class="album-item" style="width:160px">
+	<div class="album-img">
+		<img src="" style="height: 160px;">
+	</div>
+	<div class="album-title">《仙剑奇侠传》赵灵儿<span class="c-999">(20张)</span></div>
+	<div class="album-bg">
+		<div class="album-bg-Fir"></div>
+		<div class="album-bg-Sec"></div>
+	</div>
+</div>*/
+.album-item{}
+.album-img{ border:1px solid #e0e0e0}
+.album-img img{ display:block; width: 100%}
+.album-title{display:block;text-align:left;padding:7px 5px;line-height:18px;color:#555;text-decoration:none;font-size:12px;border:solid 1px #e0e0e0;border-top:0}
+.album-bg-Fir,.album-bg-Sec{border:1px solid #e6e6e6;border-top:1px solid #f5f5f5;height:1px;margin:0 auto;overflow:hidden}
+.album-bg-Fir{ margin:0 3px}
+.album-bg-Sec{ margin:0 6px}
+
+/*3.6.3 头像
+	Name:			mod_avatar
+	Example:		<i class="avatar avatar-L radius"><img src="static/h-ui/images/ucenter/avatar-default.jpg"></i>
+*/
+.avatar{display:inline-block;position:relative; overflow:hidden}
+.avatar img{ display:block}
+.avatar.radius,.avatar.radius img{border-radius:50%}
+.avatar,.avatar img{width:32px; height:32px}
+.avatar.size-MINI{ width:16px;height:16px}
+.avatar.size-S,.avatar.size-S img{width:24px; height:24px}
+.avatar.size-M,.avatar.size-M img{width:32px; height:32px}/*默认为中，可以不写，可以理解为：均码*/
+.avatar.size-L,.avatar.size-L img{width:40px; height:40px}
+.avatar.size-XL,.avatar.size-XL img{width:64px; height:64px}
+.avatar.size-XXL,.avatar.size-XXL img{width:100px; height:100px}
+.avatar.size-XXXL,.avatar.size-XXXL img{width:128px; height:128px}
+
+.textarea-numberbar{ position:absolute; right:20px; bottom:5px; z-index:1; margin-bottom:0}
+.textarea-length{ font-style:normal}
+
+form label.error {
+	color: red;
+}
