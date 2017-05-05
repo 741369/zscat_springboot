@@ -1,29 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.zscat</groupId>
-	<artifactId>zscat</artifactId>
-	<version>0.0.1</version>
-	<packaging>pom</packaging>
-	<description>zscat基本业务系统SpringBoot版</description>
-	<modules>
-		<module>zscat-common</module>
-		<module>zscat-admin</module>
-		<module>zscat-cms</module>
-		<module>zscat-blog</module>
-		<module>zscat-shop</module>
-	</modules>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.zscat</groupId>
+    <artifactId>zscat</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <description>zscat基本业务系统SpringBoot版</description>
+    <modules>
+        <module>zscat-common</module>
+        <module>zscat-admin</module>
+        <module>zscat-cms</module>
+        <module>zscat-blog</module>
+        <module>zscat-shop</module>
+    </modules>
 
-	<parent>
+    <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.1.RELEASE</version>
-        
+
     </parent>
 
     <properties>
         <java.version>1.7</java.version>
-         <jsoup.version>1.9.2</jsoup.version>
+        <jsoup.version>1.9.2</jsoup.version>
         <mybatis.spring.version>1.2.4</mybatis.spring.version>
         <fastjson.version>1.2.4</fastjson.version>
     </properties>
@@ -103,80 +103,80 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-			    <groupId>org.jsoup</groupId>
-			    <artifactId>jsoup</artifactId>
-			    <version>${jsoup.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>fastjson</artifactId>
-				<version>${fastjson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-			</dependency>
-				<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
-<dependency>
-    <groupId>net.sf.json-lib</groupId>
-    <artifactId>json-lib</artifactId>
-    <version>0.9</version>
-</dependency>
-<dependency>
-    <groupId>jdom</groupId>
-    <artifactId>jdom</artifactId>
-    <version>1.1</version>
-</dependency>
-			<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
-			<dependency>
-			    <groupId>dom4j</groupId>
-			    <artifactId>dom4j</artifactId>
-	
-			</dependency>
-	
-<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
-<dependency>
-    <groupId>commons-httpclient</groupId>
-    <artifactId>commons-httpclient</artifactId>
-    <version>3.1</version>
-</dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
 
-	<!--commons -->
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils</artifactId>
-			</dependency>
-		
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>1.3.2</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>commons-fileupload</groupId>
-				<artifactId>commons-fileupload</artifactId>
-				<version>1.3.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>3.3.2</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>1.2</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>com.ibeetl</groupId>
-				<artifactId>beetl</artifactId>
-				<version>2.7.13</version>
-			</dependency>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <!--commons -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>2.7.13</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,11 +1,10 @@
 package com.zscat.common.utils;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
 
 public class Utils {
 
@@ -79,9 +78,7 @@ public class Utils {
      * 
      * @param mapText
      *            :需要转换的字符串
-     * @param KeySeparator
      *            :字符串中的分隔符每一个key与value中的分割
-     * @param ElementSeparator
      *            :字符串中每个元素的分割
      * @return Map<?,?>
      */ 

@@ -5,16 +5,10 @@
  */
 package com.zscat.common.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.BeanUtils;
-import org.yaml.snakeyaml.introspector.PropertyUtils;
+
+import java.util.*;
+//import org.yaml.snakeyaml.introspector.PropertyUtils;
 
 
 
